@@ -1,0 +1,93 @@
+{
+  "name": "atpp",
+  "vendor": "acrosmx",
+  "version": "0.0.1",
+  "title": "Third party Pixel App",
+  "description": "Third party Pixel App",
+  "billingOptions": {
+    "termsURL": "https://compliance.vtex.com/gdpr/policies/vtex-privacy-policy",
+    "support": {
+      "url": "https://support.vtex.com/hc/requests"
+    },
+    "free": true,
+    "type": "free",
+    "availableCountries": [
+      "*"
+    ]
+  },
+  "builders": {
+    "store": "0.x",
+    "pixel": "0.x",
+    "docs": "0.x",
+    "react": "3.x"
+  },
+  "dependencies": {
+    "vtex.pixel-interfaces": "1.x",
+    "vtex.app-store-seller": "0.x",
+    "vtex.session-client": "1.x"
+  },
+  "policies": [
+    {
+      "name": "colossus-fire-event"
+    },
+    {
+      "name": "colossus-write-logs"
+    },
+    {
+      "name": "vbase-read-write"
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/*"
+      }
+    }
+  ],
+  "settingsSchema": {
+    "title": "Third party Pixel App",
+    "type": "object",
+    "bindingBounded": false,
+    "properties": {
+      "gTagManId": {
+        "title": "Google Tag Manager",
+        "type": "string",
+        "description": "Enter the GTM ID (GTM-XXXXXXX) from your Google Tag Manger"
+      },
+      "ga4Id": {
+        "title": "Google Analytics 4",
+        "type": "string",
+        "description": "Enter the GA ID (G-XXXXXXXXXXX) from your Google Analytics 4"
+      },
+      "debug": {
+        "title": "Debug?",
+        "description": "Debug Google Analytics 4",
+        "type": "boolean"
+      },
+      "activeOneTrust": {
+        "title": "Active OneTrust",
+        "type": "boolean"
+      },
+      "idOneTrust": {
+        "title": "ID OneTrust",
+        "description": "Enter the OneTrust ID",
+        "type": "string"
+      },
+      "activeLytics": {
+        "title": "Active Lytics",
+        "type": "boolean"
+      },
+      "srcLytics": {
+        "title": "Lytics' src",
+        "description": "Enter the Lytics src for jstag.init",
+        "type": "string"
+      },
+      "streamLytics": {
+        "title": "Stream Lytics",
+        "description": "Enter the Lytics Stream",
+        "type": "string"
+      }
+    }
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}
