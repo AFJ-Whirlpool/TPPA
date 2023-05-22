@@ -14,24 +14,15 @@ export interface PixelMessage extends MessageEvent {
     | SearchPageInfoData
     | UserData
     | CartIdData
-    | CartData
     | PromoViewData
     | PromotionClickData
+    | NewsletterSubscriptionData
 }
 
 export interface EventData {
   event: string
   eventName: string
   currency: string
-  eventType: string
-  list: string
-  items: any
-  data: any
-  selectedItem: any
-  sellers: any
-  commertialOffer: any
-  Price: number
-  type: string
 }
 
 export interface PageInfoData extends EventData {
@@ -135,14 +126,12 @@ export interface ProductViewData extends EventData {
   event: 'productView'
   eventName: 'vtex:productView'
   product: Product
-  list?: string
 }
 
 export interface ProductClickData extends EventData {
   event: 'productClick'
   eventName: 'vtex:productClick'
   product: ProductSummary
-  position: number
   list?: string
 }
 
@@ -150,27 +139,35 @@ export interface ProductImpressionData extends EventData {
   event: 'productImpression'
   eventName: 'vtex:productImpression'
   impressions: Impression[]
-  product?: ProductSummary
-  position?: number
+  product?: ProductSummary // deprecated, use impressions list!
+  position?: number // deprecated, use impressions list!
   list: string
 }
 
-export interface CartLoadedData extends EventData {
-  event: 'cartLoaded'
-  eventName: 'vtex:cartLoaded'
+export interface CartData extends EventData {
+  event: 'cart'
+  eventName: 'vtex:cart'
   orderForm: OrderForm
 }
 
 export interface PromoViewData extends EventData {
   event: 'promoView'
-  eventType: 'vtex:promoView'
+  eventName: 'vtex:promoView'
   promotions: Promotion[]
 }
 
 export interface PromotionClickData extends EventData {
   event: 'promotionClick'
-  eventType: 'vtex:promotionClick'
+  eventName: 'vtex:promotionClick'
   promotions: Promotion[]
+}
+
+export interface NewsletterSubscriptionData extends EventData {
+  event: 'newsletterSubscription'
+  eventName: 'vtex:newsletterSubscription'
+  name: string
+  email: string
+  phone: string
 }
 
 interface Promotion {
@@ -180,97 +177,26 @@ interface Promotion {
   position?: string
 }
 
-interface CartItemAdditionalInfo {
-  brandName: string
-  brandId: string
-}
-
 interface CartItem {
-  id: string
-  productCategories: Record<string, string> | null
-  additionalInfo: CartItemAdditionalInfo | null
   brand: string
   ean: string
   category: string
   detailUrl: string
   imageUrl: string
   name: string
-  skuName: string
   price: number
-  priceIsInt?: boolean
-  sellingPrice: number
   productId: string
   productRefId: string
   quantity: number
-  skuId: string
-  referenceId: string
-  variant: string
+  seller: string
   sellerName: string
-}
-
-interface Totalizer {
-  id: string
-  name: string
-  value: number
-}
-
-interface Seller {
-  id: string
-  name: string
-  logo: string
-}
-
-interface ClientProfileData {
-  email: string
-  firstName: string
-  lastName: string
-}
-
-interface Address {
-  addressId: string
-  postalCode: string
-  street: string
-  number: string
-  neighborhood: string
-  complement: string
-  city: string
-  state: string
-}
-
-interface DeliveryOption {
-  id: string
-  price: number
-  estimate: string
-  isSelected: boolean
-}
-
-interface Shipping {
-  selectedAddress: Address
-  deliveryOptions?: DeliveryOption[]
-}
-
-interface MarketingData {
-  coupon: string
-  utmCampaign: string
-  utmSource: string
-  utmMedium: string
-  utmiCampaign: string
-  utmiPage: string
-  utmiPart: string
+  skuId: string
+  variant: string
 }
 
 export interface OrderForm {
   id: string
-  totalizers: Totalizer[]
-  sellers: Seller[]
-  salesChannel: string
   items: CartItem[]
-  canEditData: boolean
-  loggedIn: boolean
-  clientProfileData?: ClientProfileData
-  shipping?: Shipping
-  value: number
-  marketingData?: MarketingData
 }
 
 export interface Order {
@@ -350,6 +276,7 @@ export interface ProductOrder {
   sellingPrice: number
   tax: number
   quantity: number
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   components: any[]
   measurementUnit: string
   unitMultiplier: number
@@ -409,8 +336,7 @@ interface ItemSummary {
 export interface Seller {
   commertialOffer: CommertialOffer
   sellerId: string
-  sellerDefault: boolean
-  sellerName?: string
+  sellerName: string
 }
 
 export interface CommertialOffer {
@@ -418,5 +344,3 @@ export interface CommertialOffer {
   ListPrice: number
   AvailableQuantity: number
 }
-
-export type ProductViewReferenceId = Array<Item['referenceId']>

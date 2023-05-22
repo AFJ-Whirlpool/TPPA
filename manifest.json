@@ -11,9 +11,7 @@
     },
     "free": true,
     "type": "free",
-    "availableCountries": [
-      "*"
-    ]
+    "availableCountries": ["*"]
   },
   "builders": {
     "store": "0.x",
@@ -49,21 +47,6 @@
     "type": "object",
     "bindingBounded": false,
     "properties": {
-      "gTagManId": {
-        "title": "Google Tag Manager",
-        "type": "string",
-        "description": "Enter the GTM ID (GTM-XXXXXXX) from your Google Tag Manger"
-      },
-      "ga4Id": {
-        "title": "Google Analytics 4",
-        "type": "string",
-        "description": "Enter the GA ID (G-XXXXXXXXXXX) from your Google Analytics 4"
-      },
-      "debug": {
-        "title": "Debug?",
-        "description": "Debug Google Analytics 4",
-        "type": "boolean"
-      },
       "activeOneTrust": {
         "title": "Active OneTrust",
         "type": "boolean"

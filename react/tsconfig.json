@@ -1,1 +1,28 @@
-{"compilerOptions":{"module":"esnext","moduleResolution":"node","target":"es2017","declaration":true,"declarationDir":"/cache/build/build_whirlpoolmaster_master/whirlpoolmaster.multicountry-ga@1.0.0/public/@types/whirlpoolmaster.multicountry-ga/react","jsx":"preserve","lib":["es2017","dom","es2018.promise"],"noEmitOnError":false,"sourceMap":true,"typeRoots":["node_modules/@types"],"types":["node","jest","graphql"],"alwaysStrict":true,"esModuleInterop":true,"noImplicitAny":true,"noImplicitReturns":true,"noImplicitThis":true,"noUnusedLocals":true,"noUnusedParameters":true,"skipLibCheck":true,"strictFunctionTypes":true,"strictNullChecks":true,"strictPropertyInitialization":true},"exclude":["node_modules","node_modules"],"include":["./typings/*.d.ts","./**/*.tsx","./**/*.ts","./**/*.tsx","./**/*.ts","./**/*.d.ts"],"typeAcquisition":{"enable":false}}
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "lib": ["es2017", "dom", "es2018.promise"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "target": "es2017",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node", "jest", "graphql"]
+  },
+  "exclude": ["node_modules"],
+  "include": ["./typings/*.d.ts", "./**/*.tsx", "./**/*.ts"],
+  "typeAcquisition": {
+    "enable": false
+  }
+}

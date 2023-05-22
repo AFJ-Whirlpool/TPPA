@@ -1,16 +1,17 @@
 import { canUseDOM } from 'vtex.render-runtime'
 
-import { sendEnhancedEcommerceEvents } from './modules/enhancedEcommerceEvents'
-import { sendExtraEvents } from './modules/extraEvents'
-import { PixelMessage } from './typings/events'
-
-export default function () {
-  return null
-}
+import type { PixelMessage } from './typings/events'
 
 export function handleEvents(e: PixelMessage) {
-  sendEnhancedEcommerceEvents(e)
-  sendExtraEvents(e)
+  switch (e.data.eventName) {
+    case 'vtex:pageView': {
+      break
+    }
+
+    default: {
+      break
+    }
+  }
 }
 
 if (canUseDOM) {

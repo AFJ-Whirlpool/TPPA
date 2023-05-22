@@ -6,36 +6,6 @@
   }
 </script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id={{settings.ga4Id}}"></script>
-<script>
-  var ga4Id = '{{settings.ga4Id}}'
-  var ga4IdDebug = '{{settings.debug}}' == 'true' ? true : false
-  var ga4Options = {
-    
-  }
-
-  if ('{{settings.debug}}' == 'true') {
-    ga4Options.debug_mode = true
-  }
-
-  if (ga4Id) {
-    window.localStorage.setItem('ga4Vtex', ga4Id)
-    window.localStorage.setItem('ga4Vtex_debug', ga4IdDebug)
-    window.dataLayer = window.dataLayer || []
-    function gtag() {
-      window.dataLayer.push(arguments)
-    }
-    gtag('js', new Date())
-
-    gtag('config', ga4Id, ga4Options)
-    console.log('Google Analytics 4 Loaded');
-  } else {
-    console.error(
-      'Warning: No Google Analytics ID is defined. Please configure it in the apps admin.'
-    )
-  }
-</script>
-
 <script>
   var srcLytics = 'https://c.lytics.io/api/tag/{{settings.srcLytics}}/latest.min.js'
   var streamLytics = '{{settings.streamLytics}}'
@@ -123,14 +93,3 @@
 
   jstag.pageView()
 </script>
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','{{settings.gTagManId}}');</script>
-<script type="text/javascript">
-  console.log('Google Tag Manager Loaded');
-</script>
-  <!-- End Google Tag Manager -->
