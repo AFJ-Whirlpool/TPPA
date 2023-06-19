@@ -1,42 +1,111 @@
-    <div id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</div>
+<div id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</div>
+<style>
+  #ot-sdk-btn.ot-sdk-show-settings,
+  #ot-sdk-btn.optanon-show-settings {
+    color: #000000;
+    background-color: white;
+    border: 1px solid #fff;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    white-space: normal;
+    word-wrap: break-word;
+    padding: 5px;
+    font-size: .8em;
+    line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+    -moz-transition: 0.1s ease;
+    -o-transition: 0.1s ease;
+    -webkit-transition: 1s ease;
+    transition: 0.1s ease;
+  }
 
-    <style>
-      #ot-sdk-btn.ot-sdk-show-settings, #ot-sdk-btn.optanon-show-settings {
-        color: #000000;
-        background-color: white;
-        border: 1px solid #fff;
-        position: sticky;
-        width: 100%;
-        z-index: 99999;
-        bottom: 0;
-        left: 0;
-        white-space: normal;
-        word-wrap: break-word;
-        padding: 5px;
-        font-size: .8em;
-        line-height: 1.2;
-        text-align: center;
-        cursor: pointer;
-        -moz-transition: 0.1s ease;
-        -o-transition: 0.1s ease;
-        -webkit-transition: 1s ease;
-        transition: 0.1s ease;
+  #ot-sdk-btn.ot-sdk-show-settings:hover,
+  #ot-sdk-btn.optanon-show-settings:hover {
+    color: #fff;
+    background-color: #000000;
+  }
+
+  #onetrust-pc-sdk .ot-pc-footer-logo {
+    padding-left: 25px;
+    height: 30px;
+    background: #f4f4f4;
+    text-align: right;
+    display: none;
+  }
+
+  .onetrust-pc-dark-filter {
+    display: none !important;
+  }
+</style>
+<style type='text/css'>
+  :root {
+    --primary-color: #fff;
+  }
+
+  .embeddedServiceHelpButton .helpButton .uiButton {
+    background-color: var(--primary-color);
+    font-family: "Arial", sans-serif;
+  }
+
+  .embeddedServiceHelpButton .helpButton .uiButton:focus {
+    outline: 1px solid var(--primary-color);
+  }
+</style>
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>  
+  if ('{{settings.activeSalesForceChat}}' == 'true') {
+    var decodedColor = decodeURIComponent("{{settings.brandColor}}");
+    document.documentElement.style.setProperty('--primary-color', decodedColor);
+    var initESW = function(gslbBaseURL) {
+      var show = false;
+      embedded_svc.addEventHandler("afterMaximize", function(data) {
+        console.log("afterMaximize event was fired.");
+        if (!show) {
+          show = true;
+          var li2 = document.createElement("div");
+          li2.style.color = "white";
+          li2.style.backgroundColor = decodedColor;
+          li2.style.padding = "5px";
+          li2.appendChild(document.createTextNode("Al enviar tu información e iniciar este chat aceptas que todos los datos personales que nos compartes serán tratados de acuerdo con nuestra "));
+          var linkap = document.createElement('a');
+          linkap.style.fontWeight = "bold";
+          linkap.style.textDecoration = "underline";
+          linkap.setAttribute('href', '{{settings.linkNotice}}');
+          linkap.appendChild(document.createTextNode('Política de Privacidad'));
+          li2.appendChild(linkap);
+          var sidebar = document.querySelector("div.formContent.embeddedServiceSidebarForm");
+          sidebar.insertBefore(li2, sidebar.childNodes[1]);
+        }
+      });
+      embedded_svc.settings.displayHelpButton = true; //Or false
+      embedded_svc.settings.language = 'es-MX'; //For example, enter 'en' or 'en-US'
+      embedded_svc.settings.defaultMinimizedText = 'Habla con nosotros'; //(Defaults to Chat with an Expert)
+      embedded_svc.settings.disabledMinimizedText = 'No disponible'; //(Defaults to Agent Offline)
+      embedded_svc.settings.loadingText = 'Cargando chat'; //(Defaults to Loading)
+      embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+      embedded_svc.settings.entryFeature = 'LiveAgent';
+      embedded_svc.init('https://whirlpoolmex.my.salesforce.com', 'https://maytag.secure.force.com/liveAgentSetupFlow', gslbBaseURL, '00D4x000000HoFc', '{{settings.chatId}}', {
+        baseLiveAgentContentURL: 'https://c.la3-c1-ia4.salesforceliveagent.com/content',
+        deploymentId: '5724x00000098Wk',
+        buttonId: '5734x000000992W',
+        baseLiveAgentURL: 'https://d.la3-c1-ia4.salesforceliveagent.com/chat',
+        eswLiveAgentDevName: '{{settings.chatId}}',
+        isOfflineSupportEnabled: true
+      });
+    };
+    if (!window.embedded_svc) {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://whirlpoolmex.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+      s.onload = function() {
+        initESW(null);
+      };
+      document.body.appendChild(s);
+    } else {
+      initESW('https://service.force.com');
     }
-      
-    #ot-sdk-btn.ot-sdk-show-settings:hover, #ot-sdk-btn.optanon-show-settings:hover {
-        color: #fff;
-        background-color: #000000;
-    }
-      
-      #onetrust-pc-sdk .ot-pc-footer-logo {
-        padding-left: 25px;
-        height: 30px;
-        background: #f4f4f4;
-        text-align: right;
-        display: none;
-    }
-      
-      .onetrust-pc-dark-filter {
-        display: none !important;
-      }
-    </style>    
+    console.log("SalesForce Chat Launched");
+  }
+</script>

@@ -11,7 +11,9 @@
     },
     "free": true,
     "type": "free",
-    "availableCountries": ["*"]
+    "availableCountries": [
+      "*"
+    ]
   },
   "builders": {
     "store": "0.x",
@@ -68,6 +70,25 @@
       "streamLytics": {
         "title": "Stream Lytics",
         "description": "Enter the Lytics Stream",
+        "type": "string"
+      },
+      "activeSalesForceChat": {
+        "title": "Active SalesForce Chat",
+        "type": "boolean"
+      },
+      "brandColor": {
+        "title": "Brand Color HEX CODE",
+        "description": "Enter the Brand Color HEX CODE",
+        "type": "string"
+      },
+      "chatId": {
+        "title": "SalesForce Chat Id",
+        "description": "Enter the SalesForce Chat Id",
+        "type": "string"
+      },
+      "linkNotice": {
+        "title": "Link to privacy Notice",
+        "description": "Enter the Link to privacy Notice",
         "type": "string"
       }
     }
