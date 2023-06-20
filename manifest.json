@@ -86,6 +86,11 @@
         "description": "Enter the SalesForce Chat Id",
         "type": "string"
       },
+      "buttonId": {
+        "title": "SalesForce Button Id",
+        "description": "Enter the Button Id",
+        "type": "string"
+      },
       "linkNotice": {
         "title": "Link to privacy Notice",
         "description": "Enter the Link to privacy Notice",
