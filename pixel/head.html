@@ -18,6 +18,7 @@
     // - The setup below will disable the automatic sending of Page Analysis Information (to prevent duplicative sends, as this same information will be included in the jstag.pageView() call below, by default)
     jstag.init({
       src: srcLytics,
+      stream: streamLytics,
       pageAnalysis: {
         dataLayerPull: {
           disabled: true
